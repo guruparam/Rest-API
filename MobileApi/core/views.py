@@ -6,19 +6,23 @@ from rest_framework.response import Response
 from rest_framework import status
 from core.models import Brand, Phonemodel
 from core.serializer import BrandSerializer, PhoneSerializer
+from rest_framework.permissions import IsAdminUser
 
+# [get, post, put, patch, delete]
 
 class BrandViewSet(viewsets.ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+    permission_classes = [IsAdminUser]
 
-class Brandupdate(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Brand.objects.all()
-    serializer_class = BrandSerializer
-    lookup_field = 'id'
+class PhoneModelViewSet(viewsets.ModelViewSet):
+    queryset = Phonemodel.objects.all()
+    serializer_class = PhoneSerializer
+    permission_classes = [IsAdminUser]
 
 
-"""class BrandDetail(viewsets.ViewSet):
+"""
+class BrandDetail(viewsets.ViewSet):
 
     def get(request):
         queryset = Brand.objects.all()
@@ -38,6 +42,3 @@ class Brandupdate(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer_class.data)
 """
 
-class PhoneModelViewSet(viewsets.ModelViewSet):
-    queryset = Phonemodel.objects.all()
-    serializer_class = PhoneSerializer
