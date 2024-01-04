@@ -13,12 +13,10 @@ from rest_framework.permissions import IsAdminUser
 class BrandViewSet(viewsets.ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
-    permission_classes = [IsAdminUser]
 
 class PhoneModelViewSet(viewsets.ModelViewSet):
     queryset = Phonemodel.objects.all()
     serializer_class = PhoneSerializer
-    permission_classes = [IsAdminUser]
 
 
 """
